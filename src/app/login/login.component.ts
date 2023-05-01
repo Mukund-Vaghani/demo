@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {FormControl,FormGroup} from '@angular/forms';
+import { Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,19 +8,31 @@ import {FormControl,FormGroup} from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-loginForm = new FormGroup({
-  email: new FormControl(''),
-  password: new FormControl('')
-})
+  // router: Router = new Router();
+  error = '';
 
-clickb(){
-  console.log('login buttton click');
-  alert('hyy button clicked');
-}
+  loginForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl('')
+  })
 
-  loginUser() {
-    console.log('get login user function');
-    console.log(this.loginForm)
-    console.warn(this.loginForm.value);
-}
+  constructor(private router: Router){}
+  async loginUser(): Promise<void> {
+    var result = await fetch('http://localhost:8210/api/v1/user/login', {
+      method: 'POST',
+      body: JSON.stringify(this.loginForm.value),
+      headers: { 'Content-Type': 'application/json','api-key':'empro28042023' }
+    })
+
+    var response = await result.json()
+
+    if (response.code === '1') {
+      localStorage.setItem('token',response.dat[0].token);
+      this.router.navigate(['/home']);
+    } else if (response.code === '0') {
+      this.error = response.message;
+      alert(this.error);
+    }
+  }
+
 }

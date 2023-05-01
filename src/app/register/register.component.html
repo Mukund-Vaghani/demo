@@ -20,34 +20,47 @@
 
                 <form [formGroup]="registerForm" (ngSubmit)="registerUSer()">
                   <div class="form-outline mb-4">
+                    <span style="color:red" *ngIf="firstName && firstName.invalid && firstName.touched">First Name input field is not valid</span>
                     <input type="text" id="first_name" class="form-control form-control-lg"
                       formControlName="firstName" />
                     <label class="form-label" for="first_name">First Name</label>
                   </div>
 
                   <div class="form-outline mb-4">
+                    <span style="color:red" *ngIf="lastName && lastName.invalid && lastName.touched">Last Name input field is not valid</span>
                     <input type="text" id="last_name" class="form-control form-control-lg" formControlName="lastName" />
                     <label class="form-label" for="last_name">Last Name</label>
                   </div>
 
+                  <div class="radio-outline mb-4">
+                    <input id="male" value="male" type="radio" name="gender" formControlName="gender" />
+                    <label class="radio-label"> Male</label>
+                    <input id="female" value="female" type="radio" name="gender" formControlName="gender" />
+                    <label class="radio-label">Female</label>
+                  </div>
+
                   <div class="form-outline mb-4">
+                    <span style="color:red" *ngIf="email && email.invalid && email.touched">Eamil input field is not valid</span>
                     <input type="email" id="email" class="form-control form-control-lg" formControlName="email" />
                     <label class="form-label" for="email">Your Email</label>
                   </div>
 
                   <div class="form-outline mb-4">
+                    <span style="color:red" *ngIf="userName && userName.invalid && userName.touched">User Name input field is not valid</span>
                     <input type="text" id="user_name" class="form-control form-control-lg" formControlName="userName" />
                     <label class="form-label" for="user_name">User Name</label>
                   </div>
 
                   <div class="form-outline mb-4">
+                    <span style="color:red" *ngIf="password && password.invalid && password.touched">Password input field is not valid</span>
                     <input type="password" id="password" class="form-control form-control-lg"
                       formControlName="password" />
                     <label class="form-label" for="password">Password</label>
                   </div>
 
                   <div class="form-outline mb-4">
-                    <input type="password" id="repeat_password" class="form-control form-control-lg"
+                    <span style="color:red" *ngIf="confirmPassword && confirmPassword.invalid && confirmPassword.touched">Password input field is not valid</span>
+                    <input type="password" id="confirmPassword" class="form-control form-control-lg"
                       formControlName="confirmPassword" />
                     <label class="form-label" for="repeat_password">Repeat your password</label>
                   </div>
@@ -65,8 +78,8 @@
                   </div>
 
                   <div class="d-flex justify-content-center">
-                    <button type="button"
-                      class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                    <button type="submit"
+                      class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" [disabled]="registerForm.invalid">Register</button>
                   </div>
 
                   <p class="text-center text-muted mt-5 mb-0">Have already an account? <a routerLink="/login"
