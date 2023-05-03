@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdsComponent } from './ads/ads.component';
+import { ContactusComponent } from './contactus/contactus.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { P404Component } from './p404/p404.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:'register',component:RegisterComponent},
   {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
   {path:'ads',component:AdsComponent, canActivate:[AuthGuard]},
+  {path:'contactus',component:ContactusComponent},
   {path: '**', component:P404Component}
 ];
 

@@ -14,16 +14,26 @@ export class AdsComponent {
 
   adsForm = new FormGroup({
     title: new FormControl('',[Validators.required]),
-    description: new FormControl(''),
-    image: new FormControl('')
+    description: new FormControl('',[Validators.required]),
+    image: new FormControl('',[Validators.required])
   })
 
+  get title(){
+    return this.adsForm.get('title');
+  }
+
+  get description(){
+    return this.adsForm.get('description');
+  }
+  get image(){
+    return this.adsForm.get('image');
+  }
   constructor(private router: Router){}
   async postAds(): Promise<void>{
     var result = await fetch('http://localhost:8210/api/v1/user/ads',{
     method:'POST',
     body:JSON.stringify(this.adsForm.value),
-    headers:{'Content-Type': 'application/json','api-key':'empro28042023','token':this.token}
+    headers:{'Content-Type': 'application/json','api-key':'hyperlink','token':this.token}
   }) 
   var response = await result.json()
 

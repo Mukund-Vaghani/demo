@@ -1,0 +1,88 @@
+<!-- <p>contactus works!</p> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid" style="padding: 7.8%;">
+        <div class="row justify-content-center">
+          <div class="col-xl-10">
+            <div class="card border-0 rounded-3 shadow-lg overflow-hidden">
+              <div class="card-body p-0">
+                <div class="row g-0">
+                  <div class="col-sm-6 d-none d-sm-block bg-image"></div>
+                  <div class="col-sm-6 p-4">
+                    <div class="text-center">
+                      <div class="h3 fw-light">Contact Form</div>
+                      <p class="mb-4 text-muted">Split layout contact form</p>
+                    </div>
+      
+                    <form id="contactus" data-sb-form-api-token="API_TOKEN" #contactus="ngForm" (ngSubmit)="onSubmit(contactus.value)">
+      
+                      <!-- Name Input -->
+                      <div class="form-floating mb-3">
+                        <input class="form-control" id="first_name" pattern="[a-zA-Z]" minlength="3" type="text" placeholder="First Name" #first_name="ngModel" ngModel name="first_name" required/>
+                        <label for="name">First Name</label>
+                        <div *ngIf="first_name.invalid && first_name.touched" class="error">
+                            <div *ngIf="first_name.errors?.['required']" class="error">First Name is required.</div>
+                            <div *ngIf="first_name.errors?.['minlength']" class="error">First Name minimum 3 characters are required!</div>
+                            <div *ngIf="first_name.errors?.['pattern']" class="error">First Name not contain characters</div>
+                        </div>
+                      </div>
+
+                      <div class="form-floating mb-3">
+                        <input class="form-control" minlength="3" id="last_name" type="text" placeholder="Last Name" #last_name="ngModel" ngModel name="last_name" required/>
+                        <label for="name">Last Name</label>
+                        <div *ngIf="last_name.invalid && last_name.touched" class="error">
+                            <div *ngIf="last_name.errors?.['required']" class="error">Last Name is required.</div>
+                            <div *ngIf="last_name.errors?.['minlength']" class="error">Last Name minimum 3 characters are required!</div>
+                        </div>
+                      </div>
+      
+                      <!-- Email Input -->
+                      <div class="form-floating mb-3">
+                        <input class="form-control" id="email" type="email" placeholder="Email Address" email #email="ngModel" ngModel name="email" required/>
+                        <label for="emailAddress">Email Address</label>
+                        <div *ngIf="email.invalid && email.touched" class="error">
+                            <div *ngIf="email.errors?.['required']" class="error">Email Address is required.</div>
+                            <div *ngIf="email.errors?.['email']" class="error">Email Address is not valid.</div>
+                        </div>
+                      </div>
+      
+                      <!-- Message Input -->
+                      <div class="form-floating mb-3">
+                        <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;" #message="ngModel" ngModel name="message" required></textarea>
+                        <label for="message">Message</label>
+                        <div *ngIf="message.invalid && message.touched" class="error">Message is required.</div>
+                      </div>
+      
+                      <!-- Submit success message -->
+                      <div class="d-none" id="submitSuccessMessage">
+                        <div class="text-center mb-3">
+                          <div class="fw-bolder">Form submission successful!</div>
+                          <p>To activate this form, sign up at</p>
+                          <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                        </div>
+                      </div>
+      
+                      <!-- Submit button -->
+                      <div class="d-grid">
+                        <button class="btn btn-primary" id="submitButton" type="submit" [disabled]="contactus.invalid">Submit</button>
+                      </div>
+                    </form>
+                    <!-- End of contact form -->
+      
+                  </div>
+                </div>
+      
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

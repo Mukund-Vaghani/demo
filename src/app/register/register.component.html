@@ -52,7 +52,10 @@
                   </div>
 
                   <div class="form-outline mb-4">
-                    <span style="color:red" *ngIf="password && password.invalid && password.touched">Password input field is not valid</span>
+                    <div *ngIf="password && password.invalid && password.touched" class="error">
+                    <span style="color:red" *ngIf="password.errors?.['required']">Password input field is not valid</span>
+                    <span style="color:red" *ngIf="password.errors?.['pattern']">Password field requires a minimum length of 8 characters and must include at least one capital letter, one small letter, one special character, and one number.</span>
+                    </div>
                     <input type="password" id="password" class="form-control form-control-lg"
                       formControlName="password" />
                     <label class="form-label" for="password">Password</label>

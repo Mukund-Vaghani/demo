@@ -21,16 +21,19 @@
                                 <form [formGroup]="adsForm" (ngSubmit)="postAds()">
 
                                     <div class="form-outline mb-4">
+                                        <span style="color:red" *ngIf="title && title.invalid && title.touched">Title input field is not valid</span>
                                         <input type="text" id="title" class="form-control form-control-lg" formControlName="title"/>
                                         <label class="form-label" for="title">Title</label>
                                     </div>
 
                                     <div class="form-outline mb-4">
+                                        <span style="color:red" *ngIf="description && description.invalid && description.touched">Description input field is not valid</span>
                                         <input type="text" id="description" class="form-control form-control-lg" formControlName="description"/>
                                         <label class="form-label" for="description">Description</label>
                                     </div>
 
                                     <div class="form-outline mb-4">
+                                        <span style="color:red" *ngIf="image && image.invalid && image.touched">Upload Image field is not valid</span>
                                         <input type="file" id="upload_image" class="form-control form-control-lg" formControlName="image"/>
                                         <label class="form-label" for="upload_image">Upload Image</label>
                                     </div>
@@ -45,7 +48,7 @@
                                     </div>
 
                                     <div class="d-flex justify-content-center">
-                                        <button type="submit"
+                                        <button type="submit" [disabled]="adsForm.invalid"
                                             class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Submit</button>
                                     </div>
                                 </form>
